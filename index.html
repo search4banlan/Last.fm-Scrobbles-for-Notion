@@ -1,7 +1,11 @@
-Only displays when you're currently listening to music.<br>
-Update "username" in JavaScript with your Last.fm username. 
+var requestURL = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=feibeing632&api_key=ac45c9fc5f2c59b14b274973939496b6&format=json&limit=5';
+var request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
 
-
-<div id="last">
-  <p><a href="http://www.last.fm/user/feibeing632/now"><img id="artwork" src=""></a></p><div id="track"></div>
-</div>
+request.onload = function() {
+  var superHeroes = request.response;
+  populateHeader(superHeroes);
+  showHeroes(superHeroes);
+}
